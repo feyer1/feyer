@@ -1,0 +1,13 @@
+# Copyright 2016 Icaro Feyerabend Rilho <rilho.icaro@protonmail.com>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'libaal-1.0.6.exheres.0,which is:
+#   Copyright 2014 Nicolas Braud-Santoni <nicolas+exherbo@braud-santoni.eu>
+
+require sourceforge [ project=reiser4/reiser4-utils/${PN} suffix=tar.gz ]
+
+SLOT="0"
+PLATFORMS="~amd64"
+
+SUMMARY="Reiser4 filesystem support library"
+
+DEFAULT_SRC_INSTALL_PARAMS=( libdir=/usr/$(exhost --target)/lib includedir=/usr/$(exhost --target)/include )
