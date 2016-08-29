@@ -1,0 +1,43 @@
+# Copyright 2016 William Maxwell Iceladen <thinkabit.ukim@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require python
+
+Summary="A console file manager with vim key bindings"
+HOMEPAGE="http://ranger.nongnu.org/"
+DOWNLOADS="http://ranger.nongnu.org/${PNV}.tar.gz"
+
+SLOT="0"
+PLATFORMS="amd64 ~amd64"
+MYOPTIONS="images [[ description = [ use net-www/w3m to display images ] ]]
+           run-as-root [[ description = [ install sys-apps/sudo to use run-as-root feature ] ]]
+           file [[ description = [ use sys-apps/file to determine filetypes ] ]]
+           encoding [[ description = [ use dev-python/chardet as universal enconding detector ] ]]"
+
+DEPEDENCIES="
+    run:
+        virtual/pages
+        sys-apps/file
+        images? (
+            net-www/w3m[imlib2,fbcon]
+        )
+        run-as-root? (
+            sys-apps/sudo
+        )
+        file? (
+            sys-apps/file
+        )
+        encoding? (
+            dev-python/chardet
+        )
+    suggestion:
+        net-www/elinks [[ description = [ preview HTML files ] ]]
+        app-text/source-highlight [[ description = [ Color source code previews ] ]]
+        app-arch/atool [[ description = [ Used to extract archives ]]
+        app-text/poppler [[ description = [ PDF previews ]]
+"
+
+
+src_install() {
+    default
+}     

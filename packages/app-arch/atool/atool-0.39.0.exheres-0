@@ -1,0 +1,23 @@
+# Copyright 2016 William Maxwell Iceladen <thinkabit.ukim@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="atool is a script for managing file archives of various types (tar, tar+gzip, zip etc)."
+HOMEPAGE="http://www.nongnu.org/atool/"
+DOWNLOADS="http://savannah.nongnu.org/download/${PN}/${PNV}.tar.gz"
+
+SLOT="0"
+PLATFORMS="amd64 ~amd64"
+MYOPTIONS=""
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( bindir=/usr/$(exhost --target)/bin )
+
+DEPENDENCIES="
+    build+run:
+        dev-lang/perl:=[>=5.004]
+"
+
+src_install() {
+    default
+}
+
+

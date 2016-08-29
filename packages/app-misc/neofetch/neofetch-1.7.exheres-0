@@ -1,0 +1,41 @@
+# Copyright 2016 William Maxwell Iceladen <thinkabit.ukim@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="A fast, highly customizable system info script that supports Linux, OS X, iOS, BSD, Solaris and Windows (Cygwin)"
+HOMEPAGE="https://github.com/dylanaraps/neofetch"
+DOWNLOADS="https://github.com/dylanaraps/${PN}/archive/${PV}.tar.gz"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="desktop [[ description = [ Detection of Desktop enviroment/Window manager ] ]]
+           thumbnail [[ description = [ Thumbnail creation ] ]]
+           images [[ description = [ Allow usage of user-defined images ] ]]
+           screenshot [[ description = [ Allow neofetch to take screenshots ] ]]
+           resolution [[ description = [ Detection of user's resolution ] ]]"
+
+DEFAULT_SRC_INSTALL_PARAMS=( PREFIX=/usr/$(exhost --target) )
+
+DEPENDENCIES="
+    run:
+        app-shells/bash
+        desktop? ( 
+                x11-apps/xprop
+        )
+        images? (
+                net-www/w3m[imlib2]
+        )
+        screenshot? (
+                media-gfx/scrot
+        )
+"
+
+src_prepare() {
+    # neofetch assumes /usr/local/ for it's configuration but we use /usr/$(exhost --target)
+    # use sed to replace the full matches of local with $(exhost --target)
+    # This will break things like BSD, but we are on exherbo not BSD
+    edo sed -i -e "s/local\b/$(exhost --target)/" neofetch
+}
+
+src_install() {
+    default
+}
