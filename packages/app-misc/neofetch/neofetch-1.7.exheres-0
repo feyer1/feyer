@@ -26,6 +26,10 @@ src_prepare() {
     # neofetch assumes /usr/local/ for it's configuration but we use /usr/$(exhost --target)
     # use sed to replace the full matches of local with $(exhost --target)
     edo sed -i -e "s/local\b/$(exhost --target)/" neofetch
+
+    # Since we changed the the prefix the man pages are installed to the wrong place
+    # use sed to hardcode the path
+    edo sed -i -e s:'$(PREFIX)'\/share\/man:\/usr\/share\/man: Makefile
 }
 
 src_install() {
